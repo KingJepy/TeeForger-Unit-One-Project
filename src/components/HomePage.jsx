@@ -10,7 +10,7 @@ function HomePage () {
                 <p>
                     Welcome to the TeeForge! Where you can create your own custom Tee designs and we bring them to life.
                 </p>
-                <Link to='/'>Home</Link>
+                <Link to='/orders'>Start Your Order</Link>
             </div>
             
             <img src={homePageImage} alt="Shirt Rack" />
