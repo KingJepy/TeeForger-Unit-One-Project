@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './OrderForm.css';
 
 function OrderForm () {
     //use state to keep track of our size
@@ -11,7 +12,11 @@ function OrderForm () {
     ]);
     // use state to keep track of the order and total cost
     const [order, setOrder] = useState([]);
-    const[totalCost, setTotalCost] = useState(0)
+    const[totalCost, setTotalCost] = useState(0);
+
+    //use state for payment options
+    const [paymentMethod, setPaymentMethod] = useState('');
+    const [paymentConfirmation, setPaymentConfirmation] = useState(false); //start false so you cant hit submit before clicking an option
 
     //toggle on and off a size
     const toggleSize = (index) => {
@@ -38,10 +43,23 @@ function OrderForm () {
         setTotalCost(total);
     };
 
+    const confirmPayment = () => {
+        if (order.length === 0) {
+            alert("Slow Down Partner, Start Your Order First!");
+            return;
+        } else if (!paymentMethod) {
+            alert("Hold Up, How You Paying?");
+            return;
+        }
+
+        setPaymentConfirmation(true);
+        alert("Thank You For Your Business. An Email Will Be Sent Out Shortly")
+    }
+
     return (
         <div className="order-page">
             {/* pass in my submit function so it submits correctly */}
-            <form onSubmit={handleSubmit}>
+            <form className="order-left" onSubmit={handleSubmit}>
                 <h2>Select Sizes</h2>
                 {/* map over for each size */}
                 {sizes.map((size, index) => (
@@ -60,7 +78,7 @@ function OrderForm () {
 
             </form>
             {/* separate div so I can align them differently */}
-            <div className="orders-right">
+            <div className="order-right">
                 <div className="total-cost-table">
                     <h2>Total</h2>
                     <table border="1" cellPadding="8">
@@ -84,9 +102,56 @@ function OrderForm () {
                         </tr>
                     </table>     
                 </div>
-                <ul className="payment-options">
-
-                </ul>
+                <div>
+                    <h2>Payment Options</h2>
+                    <ul className="payment-options">
+                        <li>
+                            <label>
+                                <input 
+                                type="radio" 
+                                name="payment" 
+                                value="debit-credit" 
+                                checked={paymentMethod === 'debit-credit'} 
+                                onChange={(e) => setPaymentMethod(e.target.value)}
+                                /> Debit/Credit Card
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input 
+                                type="radio" 
+                                name="payment" 
+                                value="google-pay" 
+                                checked={paymentMethod === 'google-pay'} 
+                                onChange={(e) => setPaymentMethod(e.target.value)}
+                                /> Google Pay
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input 
+                                type="radio" 
+                                name="payment" 
+                                value="apple-pay" 
+                                checked={paymentMethod === 'apple-pay'} 
+                                onChange={(e) => setPaymentMethod(e.target.value)}
+                                /> Apple Pay
+                            </label>
+                        </li>                         
+                        <li>
+                            <label>
+                                <input 
+                                type="radio" 
+                                name="payment" 
+                                value="paypal" 
+                                checked={paymentMethod === 'paypal'} 
+                                onChange={(e) => setPaymentMethod(e.target.value)}
+                                /> Paypal
+                            </label>
+                        </li> 
+                    </ul>
+                    <button type="button" onClick={confirmPayment}>Confirm Payment</button>
+                </div>
             </div>
         </div>
     );
