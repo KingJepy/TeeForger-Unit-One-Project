@@ -4,7 +4,12 @@ padding: 0;
 }
 
 .entire-page {
+    background-color: darkslategrey;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+}
+
+.content {
+    flex-grow: 1;
 }

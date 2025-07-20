@@ -11,7 +11,8 @@
 }
 
 .headerLinks a {
-    margin-left: 16px;
+    justify-content: flex-end;
+    margin-left: auto;
     color: Black;
     font-size: 25px;
 }
