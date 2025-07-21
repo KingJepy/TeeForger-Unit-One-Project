@@ -11,8 +11,6 @@ function Header () {
                 <a href="/about">About</a>
                 <a> | </a>
                 <a href="/design">Design</a>
-                <a> | </a>
-                <a href="/orders">Orders</a>
             </nav>
         </header>
     );

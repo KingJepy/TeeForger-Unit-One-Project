@@ -1,4 +1,4 @@
-
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import './ShirtPreview.css';
 
@@ -40,6 +40,8 @@ function TShirtDesigner() {
           <h3>Upload Your Design</h3>
           <input type="file" accept="image/*" onChange={handleImageUpload} />
         </div>
+        {/* link to order the shirt */}
+        <Link to="/orders" className='order-link'>Order</Link>
       </div>
 
       {/* create a box and put our blank shirt png inside. then put our new image on top */}
