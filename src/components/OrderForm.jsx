@@ -8,7 +8,7 @@ function OrderForm () {
         { name: 'Medium', selected: false, quantity: 1, price: 14 },
         { name: 'Large', selected: false, quantity: 1, price: 14 },
         { name: 'XL', selected: false, quantity: 1, price: 14 },
-        { name: '2X', selected: false, quantity: 1, price: 16 },        
+        { name: '2X', selected: false, quantity: 1, price: 16 },
     ]);
     // use state to keep track of the order and total cost
     const [order, setOrder] = useState([]);
@@ -17,6 +17,10 @@ function OrderForm () {
     //use state for payment options
     const [paymentMethod, setPaymentMethod] = useState('');
     const [paymentConfirmation, setPaymentConfirmation] = useState(false); //start false so you cant hit submit before clicking an option
+
+    //setting up a way to display a message instead of an alert using state
+    const [message, setMessage] = useState('');
+    const [messageType, setMessageType] = useState('');
 
     //toggle on and off a size
     const toggleSize = (index) => {
@@ -45,15 +49,18 @@ function OrderForm () {
 
     const confirmPayment = () => {
         if (order.length === 0) {
-            alert("Slow Down Partner, Start Your Order First!");
+            setMessage("Slow down, partner! Start your order first.");
+            setMessageType("error");
             return;
         } else if (!paymentMethod) {
-            alert("Hold Up, How You Paying?");
+            setMessage("Hold Up, How You Paying?");
+            setMessageType("error");
             return;
         }
 
         setPaymentConfirmation(true);
-        alert("Thank You For Your Business. An Email Will Be Sent Out Shortly")
+        setMessage("Thank You For Your Business. An Email Will Be Sent Out Shortly");
+        setMessageType("success");
     }
 
     return (
@@ -75,31 +82,34 @@ function OrderForm () {
                     </div>
                 ))}
                 <button type="submit">Update Total</button>
-
             </form>
             {/* separate div so I can align them differently */}
             <div className="order-right">
                 <div className="total-cost-table">
                     <h2>Total</h2>
                     <table border="1" cellPadding="8">
-                        <tr>
-                            <th>Size</th>
-                            <th>Price Each</th>
-                            <th>Quantity</th>
-                            <th>Subtotal</th>
-                        </tr>
-                        {order.map((item) => (
-                            <tr key={item.name}>
-                                <td>{item.name}</td>
-                                <td>{item.price}</td>
-                                <td>{item.quantity}</td>
-                                <td>${(item.quantity * item.price)}</td>
-                            </tr>                           
-                        ))}
-                        <tr>
-                            <td>Total:</td>
-                            <td>${totalCost}</td>
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th>Size</th>
+                                <th>Price Each</th>
+                                <th>Quantity</th>
+                                <th>Subtotal</th>
+                            </tr>                            
+                        </thead>
+                        <tbody>
+                            {order.map((item) => (
+                                <tr key={item.name}>
+                                    <td>{item.name}</td>
+                                    <td>${item.price}</td>
+                                    <td>{item.quantity}</td>
+                                    <td>${(item.quantity * item.price)}</td>
+                                </tr>                           
+                            ))}
+                            <tr key={totalCost}>
+                                <td>Total:</td>
+                                <td>${totalCost}</td>
+                            </tr>                            
+                        </tbody>
                     </table>     
                 </div>
                 <div>
@@ -150,6 +160,11 @@ function OrderForm () {
                             </label>
                         </li> 
                     </ul>
+                    {message && (
+                        <div className={`message ${messageType}`}>
+                            {message}
+                        </div>
+                    )}                    
                     <button type="button" onClick={confirmPayment}>Confirm Payment</button>
                 </div>
             </div>
