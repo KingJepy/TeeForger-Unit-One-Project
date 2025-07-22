@@ -1,5 +1,8 @@
 import { useState } from "react";
 import './OrderForm.css';
+import OrderItem from "./OrderItem";
+import MyButton from "./ReusableButton";
+
 
 function OrderForm () {
     //use state to keep track of our size
@@ -81,7 +84,7 @@ function OrderForm () {
                         )}
                     </div>
                 ))}
-                <button type="submit">Update Total</button>
+                <MyButton type="submit" label="Update Total" />
             </form>
             {/* separate div so I can align them differently */}
             <div className="order-right">
@@ -98,15 +101,16 @@ function OrderForm () {
                         </thead>
                         <tbody>
                             {order.map((item) => (
-                                <tr key={item.name}>
-                                    <td>{item.name}</td>
-                                    <td>${item.price}</td>
-                                    <td>{item.quantity}</td>
-                                    <td>${(item.quantity * item.price)}</td>
-                                </tr>                           
+                                // using my order item component
+                                <OrderItem
+                                    key={item.name}
+                                    name={item.name}
+                                    price={item.price}
+                                    quantity={item.quantity}
+                                />                          
                             ))}
                             <tr key={totalCost}>
-                                <td>Total:</td>
+                                <td colSpan="3">Total:</td>
                                 <td>${totalCost}</td>
                             </tr>                            
                         </tbody>
@@ -164,8 +168,9 @@ function OrderForm () {
                         <div className={`message ${messageType}`}>
                             {message}
                         </div>
-                    )}                    
-                    <button type="button" onClick={confirmPayment}>Confirm Payment</button>
+                    )}
+                    {/* using my reusable button */}
+                    <MyButton type="submit" label="Confirm Payment" />
                 </div>
             </div>
         </div>

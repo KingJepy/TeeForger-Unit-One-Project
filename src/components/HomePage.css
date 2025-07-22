@@ -8,7 +8,24 @@
     background-color: darkslategray;
 }
 
-.homeLeft {
+.design-link {
+  display: flex;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: darkcyan;
+  color: blue;
+  border-radius: 5px;
+  border: 2px solid black;
+  font-size: x-large;
+  justify-content: center;
+  font-weight: bolder;
+}
+
+.design-link:hover {
+  background-color: lightblue;
+}
+
+.home-text {
     flex: 1;
     max-width: 600px;
     font-size: larger;
@@ -17,7 +34,7 @@
     padding: 1rem;
     background-color: darkcyan;
     text-align: center;
-
+    border-radius: 5px;
 }
 
 .homePage img {

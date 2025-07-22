@@ -21,7 +21,7 @@ function TShirtDesigner() {
     <div className="designer-container">
       {/* create buttons that allow you to switch the color */}
       <div className="left-panel">
-        <div className="controls">
+        <div className="colors">
           <h3>Shirt Colors</h3>
           {shirtColors.map((color) => (
             <label key={color}>
@@ -41,7 +41,7 @@ function TShirtDesigner() {
           <input type="file" accept="image/*" onChange={handleImageUpload} />
         </div>
         {/* link to order the shirt */}
-        <Link to="/orders" className='order-link'>Order</Link>
+        <Link to="/orders" className='order-link'>Order Your Shirt</Link>
       </div>
 
       {/* create a box and put our blank shirt png inside. then put our new image on top */}

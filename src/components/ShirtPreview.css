@@ -20,7 +20,7 @@
   gap: 1.5rem;
 }
 
-.controls,
+.colors,
 .upload-section {
   font-size: x-large;
   line-height: 1.8;
@@ -97,9 +97,13 @@ input[type="radio"] {
   display: flex;
   margin-top: 1rem;
   padding: 0.5rem 1rem;
-  background-color: blue;
-  color: white;
+  background-color: darkcyan;
+  color: blue;
   border-radius: 5px;
+  border: 2px solid black;
+  font-size: x-large;
+  justify-content: center;
+  font-weight: bolder;
 }
 
 .order-link:hover {
