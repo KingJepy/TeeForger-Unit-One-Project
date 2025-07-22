@@ -170,7 +170,7 @@ function OrderForm () {
                         </div>
                     )}
                     {/* using my reusable button */}
-                    <MyButton type="submit" label="Confirm Payment" />
+                    <MyButton type="submit" label="Confirm Payment" onClick={confirmPayment} />
                 </div>
             </div>
         </div>
