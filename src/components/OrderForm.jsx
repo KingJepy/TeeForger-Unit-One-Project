@@ -52,7 +52,7 @@ function OrderForm () {
 
     const confirmPayment = () => {
         if (order.length === 0) {
-            setMessage("Slow down, partner! Start your order first.");
+            setMessage("Slow down, partner! Start your order first. Make sure to click 'Update Total' when you're all done.");
             setMessageType("error");
             return;
         } else if (!paymentMethod) {
