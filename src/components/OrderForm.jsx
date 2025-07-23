@@ -80,12 +80,12 @@ function OrderForm () {
             setMessage("Slow down, partner! We need you to confirm your order.");
             setMessageType("error");
             return;
-        } else if (!paymentMethod) {
-            setMessage("Hold Up, How You Paying?");
-            setMessageType("error");
-            return;
         } else if (Object.values(shippingInfo).some(val => val.trim() === '')) {
             setMessage("Please complete all shipping fields.");
+            setMessageType("error");
+            return;
+        } else if (!paymentMethod) {
+            setMessage("Hold Up, How You Paying?");
             setMessageType("error");
             return;
         }
