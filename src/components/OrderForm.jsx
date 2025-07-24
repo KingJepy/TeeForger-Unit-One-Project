@@ -114,7 +114,7 @@ function OrderForm () {
                         </div>
                     ))}
                     {confirmTotal && (
-                        <div className="confirmation-message">
+                        <div className="confirmation-message fade-in">
                             Thank you for confirming! now you can proceed with shipping and payment.
                         </div>
                     )}
@@ -254,7 +254,7 @@ function OrderForm () {
                         </li> 
                     </ul>
                     {message && (
-                        <div className={`message ${messageType}`}>
+                        <div className={`message ${messageType} fade-in`}>
                             {message}
                         </div>
                     )}
